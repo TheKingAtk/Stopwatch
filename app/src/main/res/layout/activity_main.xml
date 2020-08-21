@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <com.theking.analoguestopwatch.StopwatchDial
+        android:id="@+id/dial"
+        android:layout_width="314dp"
+        android:layout_height="356dp"
+        android:layout_gravity="center" />
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:text="@string/start"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id="@+id/start"
+        android:onClick="start"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stop"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id="@+id/stop"
+        android:onClick="stop"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id="@+id/reset"
+        android:onClick="reset"/>
 
-</FrameLayout>
+</LinearLayout>

@@ -15,13 +15,15 @@ import androidx.annotation.Nullable;
 import java.util.logging.LogRecord;
 
 public class StopwatchDial extends View {
-    int h,w,stop=0;
+    int h,w,stop=0,isRunning=0;
+
     int sec=0,min=0,hr=0;
-    int secAngle=90,minAngle=30;
+    int secAngle=0,minAngle=0;
     Paint paint =new Paint(),minPaint=new Paint();
     RectF rectF=new RectF(w/2,w/2,w/4+100,w/4+100);
     public StopwatchDial(Context context) {
         super(context);
+
     }
 
     public StopwatchDial(Context context, @Nullable AttributeSet attrs) {
@@ -31,6 +33,8 @@ public class StopwatchDial extends View {
     public StopwatchDial(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -43,7 +47,7 @@ public class StopwatchDial extends View {
         minPaint.setColor(Color.RED);
         minPaint.setStyle(Paint.Style.STROKE);
         minPaint.setStrokeWidth(50);
-        timer();
+
     }
 
     @Override
@@ -69,13 +73,20 @@ public class StopwatchDial extends View {
                secAngle=sec*6;
                minAngle=min*6;
                invalidate();
-               handler.postDelayed(new Runnable() {
-                   @Override
-                   public void run() {
-                       timer();
-                   }
-               },1000);
+               if(isRunning==1) handler.postDelayed(this,1000);
             }
         });
+    }
+    public void start() {
+        isRunning=1;
+        timer();
+    }
+    public void stop() {
+        isRunning=0;
+    }
+    public void reset() {
+        sec=hr=min=0;
+        secAngle=minAngle=0;
+        invalidate();
     }
 }
